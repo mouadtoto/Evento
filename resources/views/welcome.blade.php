@@ -27,6 +27,15 @@
             <div class="w-[30%] flex justify-around">
                 @auth
                 <a href="{{ url('/dashboard') }}" class="text-black text-xl">Dashboard</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-dropdown-link>
+                </form>
                 @else
                 <a href="{{ route('login') }}" class="text-black text-xl">Log in</a>
     
