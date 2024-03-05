@@ -19,8 +19,7 @@ return new class extends Migration
             $table->integer('capacity');
             $table->string('image');
             $table->date('date');
-            $table->integer('organizer_id');
-            $table->foreignId('organizer_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('event_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
