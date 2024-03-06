@@ -121,7 +121,7 @@
             <h1 class="font-bold text-5xl">Categories</h1>
             <div class="flex gap-5 flex-wrap">
             @foreach ($data as $category )
-                <div class="p-3 rounded-2xl bg-white"><h1>{{$category->name}}</h1>
+                <div class="p-3 rounded-2xl bg-white"><h1 class="catnames">{{$category->name}}</h1>
                     <div class="flex gap-5">
                         <form action="{{route('category.destroy')}}" method="POST">
                             @csrf
@@ -138,12 +138,44 @@
     </main>
 
 
-    
+    <div id="category" class="w-[50%]  rounded-xl fixed bottom-[25%] z-50 right-[25%] border border-white-500 p-6 bg-[rgb(246,243,231)]">
+        <div class="w-[80%] mt-2 ml-4"><button id="closecat" class="float-right">
+                <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 448 512">
+                    <path fill="#1f59e0" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm79 143c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
+                </svg></button>
+        </div>
+        <h2 class="text-2xl pb-3 text-black font-semibold">
+            Edit Category</h2>
+        <form action="">
+        <div>
+            <div class="flex flex-col  text-white mb-3">
+                <label class="text-black" for="name">Name</label>
+                <input type="text" id="catname" value="" class="px-3 py-2  focus:border-white-500 focus:outline-none  focus:text-white-500" autocomplete="off">
+                <input type="text" id="catid" value=""  autocomplete="off">
+                <br>
+                <input type="submit"  value="edit" class="px-3 py-2 bg-blue-800 border border-gray-900 focus:border-white-500 focus:outline-none focus:bg-gray-800 focus:text-white-500 rounded-lg" autocomplete="off">
+            </div>
+        </div>
+    </form>
+    </div>
 </body>
 
 </html>
 
 
 <script>
+let editcat = document.querySelectorAll('.editcat');
+let catnames = document.querySelectorAll('.catnames');
+for (let index = 0; index < editcat.length; index++) {
+    editcat[index].addEventListener("click", e => {
+        let id = editcat[index].value;
+        let catid = document.getElementById('catid');
+        let catname = document.getElementById('catname');
+        catid.innerText = id;
+        catname.innerText = catnames[index].innerText;
+       
+    });
+}
+    
 
 </script>
