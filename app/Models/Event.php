@@ -11,10 +11,12 @@ class Event extends Model
     protected $fillable = [
         'title',
         'description',
-        'location',
+        'Location',
         'capacity',
-        'image',
+        'Image',
         'date',
+        'Category',
+        'organizer_id'
     ];
     public function organizer(){
         return  $this->belongsTo(User::class , 'organizer_id');

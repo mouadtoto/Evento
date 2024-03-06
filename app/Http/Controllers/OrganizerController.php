@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Organizer;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,6 +10,10 @@ use Illuminate\Support\Facades\Validator;
 
 class OrganizerController extends Controller
 {
+    public function index(){
+        $data = Category::get();
+        return view('organizer' , ['data'=>$data]);
+    }
     public function storeOrganizer(Request $request)
     {
         $validator = Validator::make($request->all(), [

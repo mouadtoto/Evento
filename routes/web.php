@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrganizerController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OrganizerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('auth' , 'organizer')->group( function(){
+    Route::get('/organizer', [OrganizerController::class, 'index'])->name('organizer.dash');
+    Route::post('/event/store', [EventController::class, 'storeEvent'])->name('event.store');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/organizer/image', [OrganizerController::class, 'storeOrganizer'])->name('organizer.store');
 });
