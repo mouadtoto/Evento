@@ -17,7 +17,7 @@ class HomeController extends Controller
                 return view('organizer');
                 break;
             case 'Admin':
-                return view('admin');
+                return to_route('admin');
                 break;
             default:
                 return view('welcome');

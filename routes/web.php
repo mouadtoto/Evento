@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrganizerController;
@@ -40,6 +41,8 @@ Route::middleware('auth' , 'participant')->group( function(){
 
 
 Route::middleware('auth' , 'Admin')->group( function(){
-    
+    Route::get('/admin' , [AdminController::class , 'index'])->name('admin');
+    Route::post('/admin/category' , [AdminController::class , 'storeCategory'])->name('category.store');
+    Route::delete('/category/delete' , [AdminController::class , 'destroy'])->name('category.destroy');
 });
 require __DIR__.'/auth.php';
