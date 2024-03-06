@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,7 +11,8 @@ class AdminController extends Controller
 {
     public function index(){
         $data = Category::get();
-        return view('admin' , ['data'=>$data]);
+        $users= User::where('role' , '<>' , 'Admin')->get();
+        return view('admin' , ['data'=>$data , 'users'=>$users]);
     }
     public function storeCategory(Request $request){
         $validator = Validator::make($request->all(), [
@@ -36,5 +38,25 @@ class AdminController extends Controller
         }else{
             return $this->index()->with('deleteCatfailed' , 'unable to delete category');
         }
+    }
+    public function update(Request $request){
+        $id = $request->id;
+        $name = $request->name;
+        Category::where('id',$id)->update([
+            'name'=> $name, 
+        ]);
+        return $this->index()->with('categoryupdated' , 'Category updated succesfully');
+    }
+    public function restrictUser($id){
+        User::where('id',$id)->update([
+            'isRestricted'=> 1 , 
+        ]);
+        return $this->index();
+    }
+    public function unrestrictUser($id){
+        User::where('id',$id)->update([
+            'isRestricted'=> 0 , 
+        ]);
+        return $this->index();
     }
 }

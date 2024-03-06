@@ -44,5 +44,8 @@ Route::middleware('auth' , 'Admin')->group( function(){
     Route::get('/admin' , [AdminController::class , 'index'])->name('admin');
     Route::post('/admin/category' , [AdminController::class , 'storeCategory'])->name('category.store');
     Route::delete('/category/delete' , [AdminController::class , 'destroy'])->name('category.destroy');
+    Route::post('/category/update' , [AdminController::class , 'update'])->name('category.update');
+    Route::get('/user/restrict/{id}' , [AdminController::class , 'restrictUser'])->name('user.restrict');
+    Route::get('/user/unrestrict/{id}' , [AdminController::class , 'unrestrictUser'])->name('user.unrestrict');
 });
 require __DIR__.'/auth.php';
