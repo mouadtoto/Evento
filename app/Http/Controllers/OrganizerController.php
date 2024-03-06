@@ -32,6 +32,7 @@ class OrganizerController extends Controller
             ]
         );  
         User::where('id', $user_id)->update(['confirmed' => 1]);
-        return back();
+        return to_route('profile.edit.organizer');
     }
+    
 }

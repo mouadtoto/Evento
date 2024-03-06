@@ -9,7 +9,7 @@
     <div class="h-[30vh] flex flex-wrap items-center  justify-center  ">
         <div class="flex justify-center px-5  -mt-12">
             <img class="h-64 w-64 bg-white p-2 rounded-full"
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+                src="{{asset('images'.$data->logo)}}"
                 alt="" />
         </div>
     </div>
