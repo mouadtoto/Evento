@@ -9,6 +9,7 @@ class Organizer extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id' ,
         'logo'
     ];
     public function user(){

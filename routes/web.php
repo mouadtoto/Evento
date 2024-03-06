@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -27,4 +28,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::middleware('auth' , 'organizer')->group( function(){
+    Route::post('/organizer/image', [OrganizerController::class, 'storeOrganizer'])->name('organizer.store');
+});
+
+
+Route::middleware('auth' , 'participant')->group( function(){
+    
+});
+
+
+Route::middleware('auth' , 'Admin')->group( function(){
+    
+});
 require __DIR__.'/auth.php';

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('isRestricted')->default(0);
+            $table->integer('confirmed')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
