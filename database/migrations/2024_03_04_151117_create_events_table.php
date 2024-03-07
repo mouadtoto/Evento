@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained();
             $table->integer('isReviewed')->default(0);
             $table->integer('auto')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

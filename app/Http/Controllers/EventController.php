@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Organizer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EventController extends Controller
 {   
+    use SoftDeletes;
    public function storeEvent(Request $r){
-       $validator = Validator::make($r->all(), [
+    $organizer = Organizer::where('user_id', auth()->user()->id)->first();
+    $validator = Validator::make($r->all(), [
            'title' => 'required|string',
            'description'=> 'required|string',
             'location'=> 'required|string',
@@ -37,12 +42,16 @@ class EventController extends Controller
             'capacity' => $r->capacity,
             'date' => $r->date,
             'category_id' => $r->Category,
-            'organizer_id'=> auth()->user()->id,
+            'organizer_id'=> $organizer->id,
             'auto' =>  $auto
             
         ]
     );  
     return to_route('event.store');
    }
-  
+  public function destroy($id){
+    $event = Event::find($id);
+    $event->delete();
+    return to_route('organizer.dash');
+  }
 }

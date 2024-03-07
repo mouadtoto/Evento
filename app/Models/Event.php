@@ -18,8 +18,8 @@ class Event extends Model
         'category_id',
         'organizer_id',
     ];
-    public function user(){
-        return  $this->belongsTo(User::class , 'organizer_id');
+    public function organizer(){
+        return  $this->belongsTo(Organizer::class , 'organizer_id');
     }
     public function category(){
         return  $this->belongsTo(Category::class , 'category_id');
