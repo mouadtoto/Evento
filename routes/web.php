@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrganizerController;
+use App\Http\Controllers\ParticipantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +28,13 @@ Route::get('/dashboard', [HomeController::class , 'reroute'])->middleware(['auth
 Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 });
 
 
 Route::middleware('auth' , 'organizer')->group( function(){
     Route::get('/organizer', [OrganizerController::class, 'index'])->name('organizer.dash');
     Route::post('/event/store', [EventController::class, 'storeEvent'])->name('event.store');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/delete/event/{id}', [EventController::class, 'destroy'])->name('event.destroy');
     Route::post('/organizer/image', [OrganizerController::class, 'storeOrganizer'])->name('organizer.store');
     Route::put('/event/update' , [EventController::class , 'update'])->name('event.update');
@@ -41,7 +42,7 @@ Route::middleware('auth' , 'organizer')->group( function(){
 
 
 Route::middleware('auth' , 'participant')->group( function(){
-    
+    Route::post('/participant/image', [ParticipantController::class, 'storeParticipant'])->name('participant.store');
 });
 
 
