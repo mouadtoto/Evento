@@ -75,9 +75,12 @@
 
                                     <div class="md:col-span-5">
                                         <div class="inline-flex items-center">
-                                            <input type="checkbox" name="automatic_res" id="automatic_res"
+                                            <input value="1" type="radio" name="reservation" id=""
                                                 class="form-checkbox" />
-                                            <label for="automatic_res" class="ml-2">Automatic Reservation</label>
+                                            <label for="reservation" class="ml-2">Automatic Reservation</label>
+                                            <input value="0" type="radio" name="reservation" id="reservation"
+                                                class="form-checkbox" />
+                                            <label for="reservation" class="ml-2">Manual Reservation</label>
                                         </div>
                                     </div>
                                     <div class="md:col-span-5 text-right">
@@ -95,8 +98,8 @@
     </div>
     </div>
 
+<div class="flex flex-wrap w-full justify-center gap-3">
 @foreach ($events as $event)
-    <div class="flex flex-wrap w-full justify-center">
         <div class="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
             <img class="object-cover w-full h-64" src="{{ asset('images/' . $event->image) }}" alt="Article">
 

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 class OrganizerController extends Controller
 {
     public function index(){
-        $data = Category::get();
+        $data = Category::all();
         $organizer = Organizer::where('user_id', auth()->user()->id)->first();
         $events = [];
         if($organizer){
