@@ -69,4 +69,9 @@ class EventController extends Controller
     ]);
     return to_route('organizer.dash');
   }
+
+  public function consultEvent($id){
+    $data = Event::where('id' , $id)->first();
+    return view('event' , ['data'=>$data]);
+  }
 }

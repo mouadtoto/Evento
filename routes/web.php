@@ -42,7 +42,9 @@ Route::middleware('auth' , 'organizer')->group( function(){
 
 
 Route::middleware('auth' , 'participant')->group( function(){
+    Route::get('/participant/dash', [ParticipantController::class, 'index'])->name('participant.dash');
     Route::post('/participant/image', [ParticipantController::class, 'storeParticipant'])->name('participant.store');
+    Route::get('/participant/event/{id}', [EventController::class, 'consultEvent'])->name('participant.event');
 });
 
 
