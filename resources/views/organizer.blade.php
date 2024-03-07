@@ -12,7 +12,7 @@
                   <p>Please fill out all the fields.</p>
                 </div>
       
-                <form action="{{route('event.store')}}" method="POST">
+                <form action="{{route('event.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="lg:col-span-2">
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
@@ -27,11 +27,11 @@
                     </div>
                     <div class="md:col-span-5">
                         <label for="Image">Image</label>
-                        <input type="file" name="Image" id="Image" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                        <input type="file" name="image" id="Image" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                       </div>
                     <div class="md:col-span-3">
                       <label for="Location">Location</label>
-                      <input type="text" name="Location" id="Location" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                      <input type="text" name="location" id="Location" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
                     </div>
       
                     <div class="md:col-span-2">
@@ -42,7 +42,7 @@
                     <div class="md:col-span-5">
                       <label for="Date">Date</label>
                       <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                        <input name="date" id="Date" type="date" placeholder="Country" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
+                        <input name="date" id="Date" type="date"  class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
                       </div>
                     </div>
                     <div class="md:col-span-5">
@@ -51,7 +51,7 @@
                             <select name="Category" id="Category" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent">
                                 <option  class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" selected disabled hidden>select a category</option>
                                 @foreach ( $data as $category )
-                                <option  class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent">{{$category->name}}</option>
+                                <option value="{{$category->id}}"  class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent">{{$category->name}}</option>
                                 @endforeach
                             </select> 
                         </div>

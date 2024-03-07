@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('image');
             $table->date('date');
             $table->foreignId('organizer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained();
+            $table->integer('isReviewed')->default(0);
+            $table->integer('auto')->default(0);
             $table->timestamps();
         });
     }
