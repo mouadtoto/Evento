@@ -36,6 +36,7 @@ Route::middleware('auth' , 'organizer')->group( function(){
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/delete/event/{id}', [EventController::class, 'destroy'])->name('event.destroy');
     Route::post('/organizer/image', [OrganizerController::class, 'storeOrganizer'])->name('organizer.store');
+    Route::put('/event/update' , [EventController::class , 'update'])->name('event.update');
 });
 
 

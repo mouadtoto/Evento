@@ -18,7 +18,7 @@
                                 <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                                     <div class="md:col-span-5">
                                         <label for="title">Event Title</label>
-                                        <input type="text" name="title" id="title"
+                                        <input type="text" name="title" 
                                             class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                                     </div>
 
@@ -106,9 +106,11 @@
                         class="categories text-xs font-medium text-blue-600 uppercase dark:text-blue-400">{{ $event->category->name }}</button>
                         <button 
                           class="capacities text-xs font-medium text-black uppercase dark:text-blue-400">{{ $event->capacity }}</button>    
-                    <a href="#"
+                    <button
                         class="eventtitle block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
-                        tabindex="0" role="link">{{ $event->title }}</a>
+                        tabindex="0" role="link">{{ $event->title }}</button>
+                        <button 
+                          class="locations text-xs font-medium text-black uppercase dark:text-blue-400">{{ $event->location }}</button> 
                     <p class="eventdesc mt-2 text-sm text-gray-600 dark:text-gray-400">{{ $event->description }}</p>
                 </div>
 
@@ -167,31 +169,30 @@
                 </svg></button>
         </div>
         <h2 class="text-2xl pb-3 text-black font-semibold">
-            Edit Category</h2>
-        <form action="{{ route('category.update') }}" method="POST">
+            Edit Event</h2>
+        <form action="{{ route('event.update') }}" method="POST">
             @csrf
-            @method('PUT')
             <div>
                 <div class="flex flex-col  text-white mb-3">
                     <label class="text-black" for="name">title</label>
-                    <input type="text" id="title" value="" name="title" class="px-3 py-2 text-black"
+                    <input type="text" id="title" value="" name="edittitle" class="px-3 py-2 text-black"
                         autocomplete="off">
-                    <input type="text" id="eventid" value="" name="id" class="text-black hidden"
+                    <input type="text" id="eventid" value="" name="editid" class="text-black hidden"
                         autocomplete="off">
                         <label class="text-black" for="name">Description</label>
-                    <input type="text" id="description" value="" name="description" class="px-3 py-2 text-black"
+                    <input type="text" id="description" value="" name="editdescription" class="px-3 py-2 text-black"
                         autocomplete="off">
                         <label class="text-black" for="name">location</label>
-                    <input type="text" id="location" value="" name="location" class="px-3 py-2 text-black"
+                    <input type="text" id="location" value="" name="editlocation" class="px-3 py-2 text-black"
                         autocomplete="off">
                         <label class="text-black" for="name">capacity</label>
-                    <input type="text" id="capacity" value="" name="capacity" class="px-3 py-2 text-black"
+                    <input type="text" id="capacity" value="" name="editcapacity" class="px-3 py-2 text-black"
                         autocomplete="off">
                         <label class="text-black" for="name">date</label>
-                    <input type="date" id="date" value="" name="date" class="px-3 py-2 text-black"
+                    <input type="date" id="date" value="" name="editdate" class="px-3 py-2 text-black"
                         autocomplete="off">
                         <label class="text-black" for="category">category</label>
-                        <select name="category" class="px-3 py-2 text-black">
+                        <select name="editcategory" class="px-3 py-2 text-black">
                           <option id="category" value="" selected hidden></option>
                           @foreach ($data as $category )
                           <option value="{{$category->id}}" class="px-3 py-2 text-black">{{$category->name}}</option>

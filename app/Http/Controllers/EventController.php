@@ -54,4 +54,15 @@ class EventController extends Controller
     $event->delete();
     return to_route('organizer.dash');
   }
+  public function update(Request $r){
+
+    Event::where('id',$r->editid)->update([
+        'title' => $r->edittitle ,
+        'description' => $r->editdescription,
+        'location' => $r->editlocation,
+        'capacity' => $r->editcapacity,
+        'date' => $r->editdate,
+    ]);
+    return to_route('organizer.dash');
+  }
 }
