@@ -9,23 +9,27 @@ Alpine.start();
 
 
 let closewallet = document.getElementById('closewallet');
-    let wallet = document.getElementById('wallet');
-    let openwallet = document.getElementById('openwallet');
-    closewallet.addEventListener('click', e => {
-        wallet.style.transition = 'left 0.5s ease';
-        wallet.style.left = '-100%';
-    })
-    openwallet.addEventListener('click', e => {
-        wallet.style.transition = 'left 0.5s ease';
-        wallet.style.left = '0%';
-    })
+let wallet = document.getElementById('wallet');
+let openwallet = document.getElementById('openwallet');
+closewallet.addEventListener('click', e => {
+    wallet.style.transition = 'left 0.5s ease';
+    wallet.style.left = '-100%';
+})
+openwallet.addEventListener('click', e => {
+    wallet.style.transition = 'left 0.5s ease';
+    wallet.style.left = '0%';
+})
 
-let ticket= document.querySelectorAll('.ticket');
+let ticket = document.querySelectorAll('.ticket');
+
 
 for (let index = 0; index < ticket.length; index++) {
-    let id = ticket.value;
-    ticket[index].addEventListener('click' , getTicket(id));
-    
+    ticket[index].addEventListener('click', e => {
+        let id = ticket[index].value;
+        console.log(id);
+        getTicket(id);
+    });
+
 }
 
 let editevent = document.querySelectorAll('.editevent');
@@ -55,12 +59,12 @@ for (let index = 0; index < editevent.length; index++) {
         console.log(eventtitle[index].innerText);
         eventid.value = editevent[index].value;
         title.value = eventtitle[index].innerText;
-        description.value =eventdesc[index].innerText; 
-        location.value =locations[index].innerText;
-        date.value =eventdate[index].innerText;
-        capacity.value =capacities[index].innerText;
-        category.value =categories[index].value;
-        category.innerText =categories[index].innerText;
+        description.value = eventdesc[index].innerText;
+        location.value = locations[index].innerText;
+        date.value = eventdate[index].innerText;
+        capacity.value = capacities[index].innerText;
+        category.value = categories[index].value;
+        category.innerText = categories[index].innerText;
     });
 }
 
@@ -68,6 +72,26 @@ for (let index = 0; index < editevent.length; index++) {
 
 
 
-function getTicket(id){
-    // fetch
-}
+// function getTicket(id) {
+//     fetch('/participant/ticket/' + id, {
+//         method: 'GET'
+//     })
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+//         return response.blob();
+//     })
+//     .then(blob => {
+//         const url = window.URL.createObjectURL(new Blob([blob]));
+//         const a = document.createElement('a');
+//         a.href = url;
+//         a.download = 'ticket.pdf';
+//         document.body.appendChild(a);
+//         a.click();
+//         window.URL.revokeObjectURL(url);
+//     })
+//     .catch(error => {
+//         console.error('Error fetching ticket:', error);
+//     });
+// }

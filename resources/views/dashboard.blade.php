@@ -81,7 +81,7 @@
         
             <div class="flex items-center justify-between mt-4">
                 @if ($reserve->status=='reserved')
-                <button value="{{$reserve->event->id}}" class="ticket px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500" tabindex="0" role="link">Get ticket</button>
+                <a href="{{route('get.ticket', ['id'=>$reserve->event->id])}}" target="blank" class="ticket px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500" tabindex="0" role="link">Get ticket</a>
                 @endif
         
                 <div class="flex items-center">

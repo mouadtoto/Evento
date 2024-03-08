@@ -8,6 +8,7 @@ use App\Models\Reserve;
 use App\Models\Category;
 use App\Models\Participant;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\PDF;
 
 class ParticipantController extends Controller
 {
@@ -34,8 +35,12 @@ class ParticipantController extends Controller
         return to_route('participant.dash');
     }
 
-    public function getTicket($id){
-        $event = Event::where('id', $id)->first();
         
-    }
+        public function getTicket($id) {
+            $event = Event::where('id', $id)->first();
+            $pdf = app('dompdf.wrapper')->loadView('ticket', ['event' => $event]);
+            return $pdf->download('ticket.pdf');
+        }
+        
+    
 }

@@ -24,7 +24,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [HomeController::class , 'reroute'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/ticket', function(){
 
+    return view('ticket');
+});
 Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -46,6 +49,7 @@ Route::middleware('auth' , 'participant')->group( function(){
     Route::post('/participant/image', [ParticipantController::class, 'storeParticipant'])->name('participant.store');
     Route::get('/participant/reserve/{id}', [EventController::class, 'Reserve'])->name('reserve.event');
     Route::get('/participant/event/{id}', [EventController::class, 'consultEvent'])->name('participant.event');
+    Route::get('/participant/ticket/{id}', [ParticipantController::class, 'getTicket'])->name('get.ticket');
 });
 
 
