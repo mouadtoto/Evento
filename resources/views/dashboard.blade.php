@@ -13,7 +13,12 @@
 
    </div>
     
-<h1>Discover Our Events</h1>
+<div>
+   <button id="events" class="m-4 px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[rgb(246,243,231)] rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+
+    View Reserved Events
+</button>
+</div>
    <div class="flex flex-wrap w-full justify-center gap-3">
     @foreach ($events as $event)
             <div class="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">

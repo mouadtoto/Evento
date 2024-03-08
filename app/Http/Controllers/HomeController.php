@@ -11,7 +11,7 @@ class HomeController extends Controller
             $role = auth()->user()->role ; 
            switch ($role) {
             case 'participant':
-                return view('dashboard');
+                return to_route('participant.dash');
                 break;
             case 'organizer':
                 return to_route('organizer.dash');
