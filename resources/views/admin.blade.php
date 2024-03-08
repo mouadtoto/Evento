@@ -140,13 +140,68 @@
     </main>
     <main class="ml-60 pt-16 max-h-screen overflow-auto hidden datafields">
 
-        events
+        <div class="p-6 overflow-scroll px-0">
+            <table class="w-full min-w-max table-auto text-left">
+              <thead>
+                <tr>
+                  <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                    <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">title</p>
+                  </th>
+                  <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                    <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">capacity</p>
+                  </th>
+                  <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                    <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">organizer</p>
+                  </th>
+                  <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                    <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70"></p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                  @foreach ($events as $event )
+                  <tr>
+                    <td class="p-4 border-b border-blue-gray-50">
+                      <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{{$event->title}}</p>
+                    </td>
+                    <td class="p-4 border-b border-blue-gray-50">
+                      <div class="w-max">
+                        <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-900 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
+                          <span class="">{{$event->capacity}}</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="p-4 border-b border-blue-gray-50">
+                        <div class="w-max">
+                          <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-yellow-500/20 text-green-900 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
+                            <span class="">{{$event->organizer->user->name}}</span>
+                          </div>
+                        </div>
+                      </td> 
+                    <td class="p-4 border-b border-blue-gray-50">
+                    @if ($event->isReviewed==0)
+                    <a href="{{route('event.approve' , ['id'=>$event->id])}}" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">   
+                      approve
+                  </a>
+                    @else
+                    <a href="{{route('event.dissaprove' , ['id'=>$event->id])}}" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
+                      dissaprove
+                  </a>
+                    @endif
+                    </td>
+                  </tr>      
+                  @endforeach
+              </tbody>
+            </table>
+  
+          </div>
+          
         
     </main> 
 
     <main class="ml-60 pt-16 max-h-screen overflow-auto hidden datafields">
 
-            <div class="p-6 overflow-scroll px-0">
+        <div class="p-6 overflow-scroll px-0">
           <table class="w-full min-w-max table-auto text-left">
             <thead>
               <tr>

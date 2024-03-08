@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Event;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +13,8 @@ class AdminController extends Controller
     public function index(){
         $data = Category::get();
         $users= User::where('role' , '<>' , 'Admin')->get();
-        return view('admin' , ['data'=>$data , 'users'=>$users]);
+        $events = Event::get();
+        return view('admin' , ['data'=>$data , 'users'=>$users , 'events'=>$events]);
     }
     public function storeCategory(Request $request){
         $validator = Validator::make($request->all(), [
