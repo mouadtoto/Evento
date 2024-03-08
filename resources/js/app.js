@@ -1,3 +1,4 @@
+import { formToJSON } from 'axios';
 import './bootstrap';
 
 import Alpine from 'alpinejs';
@@ -5,6 +6,27 @@ import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 
 Alpine.start();
+
+
+let closewallet = document.getElementById('closewallet');
+    let wallet = document.getElementById('wallet');
+    let openwallet = document.getElementById('openwallet');
+    closewallet.addEventListener('click', e => {
+        wallet.style.transition = 'left 0.5s ease';
+        wallet.style.left = '-100%';
+    })
+    openwallet.addEventListener('click', e => {
+        wallet.style.transition = 'left 0.5s ease';
+        wallet.style.left = '0%';
+    })
+
+let ticket= document.querySelectorAll('.ticket');
+
+for (let index = 0; index < ticket.length; index++) {
+    let id = ticket.value;
+    ticket[index].addEventListener('click' , getTicket(id));
+    
+}
 
 let editevent = document.querySelectorAll('.editevent');
 let title = document.getElementById('title');
@@ -40,4 +62,12 @@ for (let index = 0; index < editevent.length; index++) {
         category.value =categories[index].value;
         category.innerText =categories[index].innerText;
     });
+}
+
+
+
+
+
+function getTicket(id){
+    // fetch
 }

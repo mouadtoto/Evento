@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Reserve;
 use App\Models\Category;
 use App\Models\Participant;
 use Illuminate\Http\Request;
@@ -12,8 +13,9 @@ class ParticipantController extends Controller
 {
     public function index(){
         $categories = Category::get();
-        $events = Event::paginate(3);
-        return view('dashboard' , ['categories'=> $categories, 'events'=>$events]);
+        $events = Event::where('isReviewed', 1)->paginate(3);
+        $reserves = Reserve::where('participant_id', auth()->user()->id)->get();
+        return view('dashboard' , ['categories'=> $categories, 'events'=>$events , 'reserves'=>$reserves]);
     }
     public function storeParticipant(Request $r){
         
@@ -30,5 +32,10 @@ class ParticipantController extends Controller
         );  
         User::where('id', $user_id)->update(['confirmed' => 1]);
         return to_route('participant.dash');
+    }
+
+    public function getTicket($id){
+        $event = Event::where('id', $id)->first();
+        
     }
 }
