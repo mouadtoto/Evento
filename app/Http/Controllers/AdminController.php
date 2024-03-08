@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Category;
+use App\Models\Organizer;
+use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -61,4 +63,13 @@ class AdminController extends Controller
         ]);
         return $this->index();
     }
+    public function stats() {
+        
+        $countUsers = Participant::count();
+        $countOrganizers = Organizer::count();
+        $countEvents = Event::count();
+        $data = ['users' => $countUsers, 'organizers' => $countOrganizers, 'events' => $countEvents];
+        return json_encode($data);
+    }
+    
 }

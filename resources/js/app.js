@@ -32,6 +32,8 @@ for (let index = 0; index < ticket.length; index++) {
 
 }
 
+
+
 let editevent = document.querySelectorAll('.editevent');
 let title = document.getElementById('title');
 let eventid = document.getElementById('eventid');
@@ -70,28 +72,7 @@ for (let index = 0; index < editevent.length; index++) {
 
 
 
+ 
 
 
-// function getTicket(id) {
-//     fetch('/participant/ticket/' + id, {
-//         method: 'GET'
-//     })
-//     .then(response => {
-//         if (!response.ok) {
-//             throw new Error('Network response was not ok');
-//         }
-//         return response.blob();
-//     })
-//     .then(blob => {
-//         const url = window.URL.createObjectURL(new Blob([blob]));
-//         const a = document.createElement('a');
-//         a.href = url;
-//         a.download = 'ticket.pdf';
-//         document.body.appendChild(a);
-//         a.click();
-//         window.URL.revokeObjectURL(url);
-//     })
-//     .catch(error => {
-//         console.error('Error fetching ticket:', error);
-//     });
-// }
+

@@ -55,12 +55,13 @@ Route::middleware('auth' , 'participant')->group( function(){
 
 Route::middleware('auth' , 'Admin')->group( function(){
     Route::get('/admin' , [AdminController::class , 'index'])->name('admin');
+    Route::get('/admin/stats' , [AdminController::class , 'stats']);
     Route::post('/admin/category' , [AdminController::class , 'storeCategory'])->name('category.store');
     Route::delete('/category/delete' , [AdminController::class , 'destroy'])->name('category.destroy');
     Route::post('/category/update' , [AdminController::class , 'update'])->name('category.update');
     Route::get('/user/restrict/{id}' , [AdminController::class , 'restrictUser'])->name('user.restrict');
-    Route::get('/event/approve/{id}' , [AdminController::class , 'approveEvent'])->name('event.approve');
-    Route::get('/event/dissaprove/{id}' , [AdminController::class , 'dissaproveEvent'])->name('event.dissaprove');
+    Route::get('/event/approve/{id}' , [EventController::class , 'approveEvent'])->name('event.approve');
+    Route::get('/event/dissaprove/{id}' , [EventController::class , 'dissaproveEvent'])->name('event.dissaprove');
     Route::get('/user/unrestrict/{id}' , [AdminController::class , 'unrestrictUser'])->name('user.unrestrict');
 });
 require __DIR__.'/auth.php';

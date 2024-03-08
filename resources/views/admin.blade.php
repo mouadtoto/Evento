@@ -40,7 +40,7 @@
                             </button>
                         </li>
                         <li>
-                            <button 
+                            <button
                                 class="navbuttons flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4 navbuttons">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                     fill="currentColor" class="text-lg mr-4" viewBox="0 0 16 16">
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="p-4">
-                <a type="button" href="{{route('logout')}}"
+                <a type="button" href="{{ route('logout') }}"
                     class="inline-flex items-center justify-center h-9 px-4 rounded-xl bg-gray-900 text-gray-300 hover:text-white text-sm font-semibold transition">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         class="" viewBox="0 0 16 16">
@@ -142,135 +142,167 @@
 
         <div class="p-6 overflow-scroll px-0">
             <table class="w-full min-w-max table-auto text-left">
-              <thead>
-                <tr>
-                  <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                    <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">title</p>
-                  </th>
-                  <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                    <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">capacity</p>
-                  </th>
-                  <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                    <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">organizer</p>
-                  </th>
-                  <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                    <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70"></p>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                  @foreach ($events as $event )
-                  <tr>
-                    <td class="p-4 border-b border-blue-gray-50">
-                      <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{{$event->title}}</p>
-                    </td>
-                    <td class="p-4 border-b border-blue-gray-50">
-                      <div class="w-max">
-                        <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-900 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
-                          <span class="">{{$event->capacity}}</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="p-4 border-b border-blue-gray-50">
-                        <div class="w-max">
-                          <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-yellow-500/20 text-green-900 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
-                            <span class="">{{$event->organizer->user->name}}</span>
-                          </div>
-                        </div>
-                      </td> 
-                    <td class="p-4 border-b border-blue-gray-50">
-                    @if ($event->isReviewed==0)
-                    <a href="{{route('event.approve' , ['id'=>$event->id])}}" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">   
-                      approve
-                  </a>
-                    @else
-                    <a href="{{route('event.dissaprove' , ['id'=>$event->id])}}" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
-                      dissaprove
-                  </a>
-                    @endif
-                    </td>
-                  </tr>      
-                  @endforeach
-              </tbody>
+                <thead>
+                    <tr>
+                        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                            <p
+                                class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">
+                                title</p>
+                        </th>
+                        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                            <p
+                                class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">
+                                capacity</p>
+                        </th>
+                        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                            <p
+                                class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">
+                                organizer</p>
+                        </th>
+                        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                            <p
+                                class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">
+                            </p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($events as $event)
+                        <tr>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
+                                    {{ $event->title }}</p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="w-max">
+                                    <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-900 py-1 px-2 text-xs rounded-md"
+                                        style="opacity: 1;">
+                                        <span class="">{{ $event->capacity }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="w-max">
+                                    <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-yellow-500/20 text-green-900 py-1 px-2 text-xs rounded-md"
+                                        style="opacity: 1;">
+                                        <span class="">{{ $event->organizer->user->name }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                @if ($event->isReviewed == 0)
+                                    <a href="{{ route('event.approve', ['id' => $event->id]) }}"
+                                        class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
+                                        approve
+                                    </a>
+                                @else
+                                    <a href="{{ route('event.dissaprove', ['id' => $event->id]) }}"
+                                        class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
+                                        dissaprove
+                                    </a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
-  
-          </div>
-          
-        
-    </main> 
+
+        </div>
+
+
+    </main>
 
     <main class="ml-60 pt-16 max-h-screen overflow-auto hidden datafields">
 
         <div class="p-6 overflow-scroll px-0">
-          <table class="w-full min-w-max table-auto text-left">
-            <thead>
-              <tr>
-                <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                  <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">name</p>
-                </th>
-                <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                  <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">Role</p>
-                </th>
-                <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                  <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">Email</p>
-                </th>
-                <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                  <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70"></p>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user )
-                <tr>
-                  <td class="p-4 border-b border-blue-gray-50">
-                    <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{{$user->name}}</p>
-                  </td>
-                  <td class="p-4 border-b border-blue-gray-50">
-                    <div class="w-max">
-                      <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-900 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
-                        <span class="">{{$user->role}}</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-blue-gray-50">
-                      <div class="w-max">
-                        <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-yellow-500/20 text-green-900 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
-                          <span class="">{{$user->email}}</span>
-                        </div>
-                      </div>
-                    </td> 
-                  <td class="p-4 border-b border-blue-gray-50">
-                  @if ($user->isRestricted==0)
-                  <a href="{{route('user.restrict' , ['id'=>$user->id])}}" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                    Restrict
-                </a>
-                  @else
-                  <a href="{{route('user.unrestrict' , ['id'=>$user->id])}}" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                
-                    Unrestrict
-                </a>
-                  @endif
-                  </td>
-                </tr>      
-                @endforeach
-            </tbody>
-          </table>
+            <table class="w-full min-w-max table-auto text-left">
+                <thead>
+                    <tr>
+                        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                            <p
+                                class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">
+                                name</p>
+                        </th>
+                        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                            <p
+                                class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">
+                                Role</p>
+                        </th>
+                        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                            <p
+                                class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">
+                                Email</p>
+                        </th>
+                        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                            <p
+                                class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">
+                            </p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
+                                    {{ $user->name }}</p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="w-max">
+                                    <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-900 py-1 px-2 text-xs rounded-md"
+                                        style="opacity: 1;">
+                                        <span class="">{{ $user->role }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="w-max">
+                                    <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-yellow-500/20 text-green-900 py-1 px-2 text-xs rounded-md"
+                                        style="opacity: 1;">
+                                        <span class="">{{ $user->email }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                @if ($user->isRestricted == 0)
+                                    <a href="{{ route('user.restrict', ['id' => $user->id]) }}"
+                                        class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                        Restrict
+                                    </a>
+                                @else
+                                    <a href="{{ route('user.unrestrict', ['id' => $user->id]) }}"
+                                        class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+
+                                        Unrestrict
+                                    </a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
         </div>
-        
-        
+
+
     </main>
     <main class="ml-60 pt-16 max-h-screen overflow-auto hidden datafields">
-
-        stats
-        
-    </main> 
+        <div class="flex flex-col col-span-full xl:col-span-8 rounded-sm border border-gray-200">
+            <canvas class="w-[50%]" id="myChart"></canvas>
+        </div>
+    </main>
 
 
     <div id="category"
@@ -301,6 +333,7 @@
             </div>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>
@@ -316,13 +349,14 @@
     let datafields = document.querySelectorAll('.datafields');
 
     navbuttons.forEach((element, index) => {
-    element.addEventListener('click', e => {
-        datafields.forEach(datafield => {
-            datafield.classList.add('hidden');
+        element.addEventListener('click', e => {
+            stats();
+            datafields.forEach(datafield => {
+                datafield.classList.add('hidden');
+            });
+            datafields[index].classList.remove('hidden');
         });
-        datafields[index].classList.remove('hidden');
     });
-});
 
 
     closecat.addEventListener("click", e => {
@@ -338,4 +372,45 @@
             catname.value = catnames[index].innerText;
         });
     }
+    let countevent = 0;
+    let countusers = 0;
+    let countorgs = 0;
+
+    function stats() {
+        fetch('/admin/stats')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                countevent = data.events;
+                countusers = data.users;
+                countorgs = data.organizers;
+                const ctx = document.getElementById('myChart');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Events', 'Users', 'Organizers'],
+                        datasets: [{
+                            label: 'Stats',
+                            data: [countevent, countusers, countorgs],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching stats:', error);
+            });
+    }
+
 </script>

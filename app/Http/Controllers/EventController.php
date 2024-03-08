@@ -95,4 +95,16 @@ class EventController extends Controller
     ]);
     return to_route('participant.dash');
   }
+  public function approveEvent($id){
+    Event::where('id' , $id)->update([
+      'isReviewed' => 1 ,
+    ]);
+    return to_route('admin');
+  }
+  public function dissaproveEvent($id){
+    Event::where('id' , $id)->update([
+      'isReviewed' => 0 ,
+    ]);
+    return to_route('admin');
+  }
 }
