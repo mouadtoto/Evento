@@ -14,12 +14,13 @@ class OrganizerController extends Controller
     public function index(){
         $data = Category::all();
         $organizer = Organizer::where('user_id', auth()->user()->id)->first();
+        $user= User::where('id',auth()->user()->id)->first();
         $events = [];
         if($organizer){
             $events = Event::where('organizer_id', $organizer->id)->get();
-            return view('organizer', ['data' => $data, 'events' => $events]);
+            return view('organizer', ['data' => $data, 'events' => $events, 'user'=>$user]);
         } else {
-            return view('organizer', ['data' => $data, 'events' => $events]);
+            return view('organizer', ['data' => $data, 'events' => $events,'user'=>$user]);
         }
     }
     

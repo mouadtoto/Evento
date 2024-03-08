@@ -8,9 +8,11 @@
     @if (Auth()->user()->confirmed==1)
     <div class="h-[30vh] flex flex-wrap items-center  justify-center  ">
         <div class="flex justify-center px-5  -mt-12">
+            @if (Auth()->user()->role=='organizer')
             <img class="h-64 w-64 bg-white p-2 rounded-full"
-                src="{{asset('images'.$data->logo)}}"
+                src="{{asset('images/'.$data->logo)}}"
                 alt="" />
+            @endif
         </div>
     </div>
     @else    

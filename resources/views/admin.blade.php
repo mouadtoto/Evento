@@ -21,7 +21,7 @@
                     <ul class="space-y-1">
                         <li>
                             <button
-                                class="navbuttons flex items-center bg-yellow-200 rounded-xl font-bold text-sm text-yellow-900 py-3 px-4">
+                                class="navbuttons flex items-center rounded-xl font-bold text-sm text-yellow-900 py-3 px-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                     fill="currentColor" class="text-lg mr-4" viewBox="0 0 16 16">
                                     <path
@@ -74,7 +74,7 @@
         </div>
     </aside>
 
-    <main class="ml-60 pt-16 max-h-screen overflow-auto datafields">
+    <main class="ml-60 pt-16 max-h-screen  transition-opacity opacity-0 overflow-auto datafields">
         <form action="{{ route('category.store') }}" method="POST">
             @csrf
             <div class="min-h-screen  py-6 flex flex-col justify-center sm:py-12">
@@ -138,7 +138,7 @@
             </div>
         </div>
     </main>
-    <main class="ml-60 pt-16 max-h-screen overflow-auto hidden datafields">
+    <main class="ml-60 pt-16 max-h-screen overflow-auto  transition-opacity opacity-0 hidden datafields">
 
         <div class="p-6 overflow-scroll px-0">
             <table class="w-full min-w-max table-auto text-left">
@@ -213,7 +213,7 @@
 
     </main>
 
-    <main class="ml-60 pt-16 max-h-screen overflow-auto hidden datafields">
+    <main class="ml-60 pt-16 max-h-screen overflow-auto transition-opacity opacity-0 hidden datafields">
 
         <div class="p-6 overflow-scroll px-0">
             <table class="w-full min-w-max table-auto text-left">
@@ -298,7 +298,7 @@
 
 
     </main>
-    <main class="ml-60 pt-16 max-h-screen overflow-auto hidden datafields">
+    <main class="ml-60 pt-16 max-h-screen overflow-auto transition-opacity opacity-0 hidden datafields">
         <div class="flex flex-col col-span-full xl:col-span-8 rounded-sm border border-gray-200">
             <canvas class="w-[50%]" id="myChart"></canvas>
         </div>
@@ -349,14 +349,23 @@
     let datafields = document.querySelectorAll('.datafields');
 
     navbuttons.forEach((element, index) => {
-        element.addEventListener('click', e => {
-            stats();
-            datafields.forEach(datafield => {
-                datafield.classList.add('hidden');
-            });
-            datafields[index].classList.remove('hidden');
+    element.addEventListener('click', e => {
+        stats();
+        navbuttons.forEach(button => {
+            button.classList.remove('bg-yellow-200');
         });
+        element.classList.add('bg-yellow-200');
+        datafields.forEach(datafield => {
+            datafield.classList.add('opacity-0', 'hidden');
+        }); 
+        datafields[index].classList.remove('opacity-0', 'hidden');
     });
+});
+
+
+
+
+
 
 
     closecat.addEventListener("click", e => {
