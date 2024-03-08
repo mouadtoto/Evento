@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
-use App\Models\Organizer;
 use App\Models\User;
+use App\Models\Event;
+use App\Models\Reserve;
+use App\Models\Organizer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -71,7 +72,27 @@ class EventController extends Controller
   }
 
   public function consultEvent($id){
-    $data = Event::where('id' , $id)->first();
-    return view('event' , ['data'=>$data]);
+    $event = Event::where('id' , $id)->first();
+    $check = Reserve::where('participant_id' , auth()->user()->id)->where('event_id' , $event->id)
+    ->first();
+    $isresreved = 0 ;
+    if($check){
+      $isresreved = 1 ;
+    } 
+    return view('event' , ['event'=>$event, 'isresreved'=>$isresreved]);
+  }
+
+  public function Reserve($id){
+    $event = Event::find($id);
+    $status = 'pending';
+    if($event->auto == 1){
+      $status = 'reserved';
+    }
+    Reserve::create([
+      'participant_id' => auth()->user()->id , 
+      'event_id' => $id , 
+      'status' => $status,
+    ]);
+    return to_route('participant.dash');
   }
 }
